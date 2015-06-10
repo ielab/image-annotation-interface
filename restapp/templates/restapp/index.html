@@ -19,12 +19,6 @@
 
 	<body  ng-app="cdsQuerygen">
 
-		<div ng-controller="ExampleController as ec">
-  <p>Output long number: {$ ec.cdsPatients | limitTo:1 : 10 $}</p>
-  
-  <li ng-repeat="patient in ec.cdsPatients | limitTo:1:10">{$patient.qId$}</li>
-</div>
-
 		<div class="container"  ng-controller="PatientController as patientCtrl">
 
 			<div class="page-header">
