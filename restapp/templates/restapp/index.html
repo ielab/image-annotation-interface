@@ -19,12 +19,6 @@
 
 	<body  ng-app="cdsQuerygen">
 
-		<div ng-controller="ExampleController as ec">
-  <p>Output long number: {$ ec.cdsPatients | limitTo:1 : 10 $}</p>
-  
-  <li ng-repeat="patient in ec.cdsPatients | limitTo:1:10">{$patient.qId$}</li>
-</div>
-
 		<div class="container"  ng-controller="PatientController as patientCtrl">
 
 			<div class="page-header">
@@ -33,18 +27,24 @@
 			<p class="lead">For each of the patient case reports, please generate keywords that you would use to search to find evidence for each question.</p>
 			<p>More details instructions.</p>
 
+			<form class="form-inline">
+			  <div class="form-group">
+			    <label for="exampleInputName2">Name</label>
+			    <input type="text" class="form-control" id="exampleInputName2" ng-model="patientCtrl.person" class="form-control" title="Name">
+			  </div>
+			</form>
+
 			<hr>
 
 			
-			<div ng-repeat="patient in patientCtrl.patients | limitTo:2:20" class="case">
+			<div ng-repeat="patient in patientCtrl.patients | limitTo:2:20" class="case" ng-show="patientCtrl.person">
 				<h3>{$ patient.qId $}</h3>
 				<blockquote>{$ patient.description $}</blockquote>
 				<p>What is the {$ patient.type $}?</p>
 				<h4>Keywords</h4>
 				
 					<ol>
-						<li ng-repeat="keyword in patient.keywords">{$ keyword $}</li>
-						<li ng-show="patientCtrl.currentKeywords">{$ patientCtrl.currentKeywords $}</li>
+						<li ng-repeat="keyword in patient.keywords" ng-if="keyword.person == patientCtrl.person">{$ keyword.person $}: {$ keyword.keywords $}</li>
 					</ol>
 				<form name="reviewForm" ng-submit='patientCtrl.addKeywords(patient, keyword)'>
 					<fieldset class="form-group">

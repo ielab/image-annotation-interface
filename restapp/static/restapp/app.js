@@ -12,24 +12,27 @@
 	
 	app.controller('PatientController', ['$http', '$location', '$cookies', function($http, $location, $cookies){
 		this.currentKeywords = "";
-		this.patients = cdsPatients;
+		this.patients = {};
+		this.person = "";
 		
 
-		// var patientCtrl = this;
-		// $http.get('http://localhost:8000/queries').success(function(data) {
-		// 	metadataCtrl.otherpatients = data;
-		// });
-
 		var patientCtrl = this;
+		
+		$http.get('http://localhost:8000/queries').success(function(data) {
+			patientCtrl.patients = data;
+		});
+
+		
 		this.addKeywords = function(patient) {
-			patient.keywords.push(this.currentKeywords);
 
 			var keywords = {}
-			keywords["qId"] = patient.qId;
-			keywords["keywords"] = this.currentKeywords;
+			keywords["person"] = patientCtrl.person
+			keywords["keywords"] = patientCtrl.currentKeywords;
+
+			patient.keywords.push(keywords);
 
 			$http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
-			$http.post('http://localhost:8000/queries/', keywords).success(function(data) {
+			$http.post('http://localhost:8000/queries/', patient).success(function(data) {
 				// patientCtrl.result = data;
 				patientCtrl.currentKeywords = "";
 			}).error(function(data, status, headers, config) {
