@@ -25,15 +25,17 @@
 			<div class="page-header">
 				<h1>Clinical Decision Support Query Generation</h1>
 			</div>
-			<p class="lead">For each of the patient case reports, please generate keywords that you would use to search to find evidence for each question.</p>
-			<p>More details instructions.</p>
+			<p class="lead">You are presented with a number of patient case reports, providing details on the patient's health condition and history. Along with each case report, there is a clinical question you want to find information about; questions are either (1) What is the patient's diagnosis?, (2) What tests should the patient receive?, (3) How should the patient be treated?</br>For each patient case report and associated clinical question, please generate one or more queries that you would issue to a search engine, such as PubMed Central or UpToDate, to find evidence from literature that enables you to provide a possible answer to the clinical question.</br></p>
+			<p>To start with the task, enter your name in the corresponding text box below. You should enter your first-name followed by your surname all, in lowercase; for example "john white" for John White.</br>You can interrupt the task at any time and also close the website. When you return to this page, enter your name again in the text box below and the queries you have already submitted to the system will be shown with the corresponding case report.</br></p>
 
 			<form class="form-inline">
 			  <div class="form-group">
-				<label for="exampleInputName2">Name</label>
+				<label for="exampleInputName2">Enter your first-name and surname (all lowercase)</label>
 				<input focus="true" type="text" class="form-control" id="exampleInputName2" ng-model="patientCtrl.person" class="form-control" title="Name">
 			  </div>
 			</form>
+			
+			<p></br>To enter a query, type your query in the text box below each case report, then press the Save button. You will see your query being automatically added below the case report. You can continue adding queries in this way until you are satisfied and move to the next case report.</p>
 
 			<hr>
 
@@ -68,6 +70,7 @@
 					</form>
 
 				</div>
+				<hr>
 			</div>   <!-- patient repeat -->
 
 
