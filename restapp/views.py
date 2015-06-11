@@ -12,10 +12,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-def index(request, batch):
+def index(request):
+	return batch(request, 1, 100000)
+
+def batch(request, batch=1, size=10):
 	template = loader.get_template('restapp/index.html')
 	context = Context({
 		'batch': int(batch),
+		'size': int(size),
 	})
 	return HttpResponse(template.render(context))
 

@@ -4,6 +4,7 @@ blockquote {
 
 h3 {
   margin-top: 45px;
+  margin-bottom: 20px;
 }
 
 h4 {
@@ -26,4 +27,5 @@ hr {
 
 .case {
 	margin-left: 20px;
+	margin-bottom: 40px;
 }

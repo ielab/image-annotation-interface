@@ -18,7 +18,7 @@
 
 		var patientCtrl = this;
 		
-		$http.get('http://localhost:8000/queries').success(function(data) {
+		$http.get('/queries').success(function(data) {
 			patientCtrl.patients = data;
 		});
 
@@ -45,7 +45,7 @@
             
 
             $http.defaults.headers.put['X-CSRFToken'] = $cookies.csrftoken;
-            $http.put('http://localhost:8000/query/'+patient.qId+'/keywords/'+person+'/'+order+'/', keywords).success(function(data) {
+            $http.put('/query/'+patient.qId+'/keywords/'+person+'/'+order+'/', keywords).success(function(data) {
                 // keywordCtrl.result = data;
                 keywordCtrl.currentKeywords = "";
                 console.log(data);

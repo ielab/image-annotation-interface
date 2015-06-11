@@ -13,6 +13,7 @@
 
 		<!-- Bootstrap core CSS -->
 		<link href="/static/restapp/bootstrap.min.css" rel="stylesheet">
+		<link href="/static/restapp/sticky-footer-navbar.css" rel="stylesheet">
 		<link href="/static/restapp/custom.css" rel="stylesheet">
 
 	</head>
@@ -39,7 +40,7 @@
 
 
 			
-			<div ng-repeat="patient in patientCtrl.patients | limitTo: -(patientCtrl.patients.length-{{batch}}+1) | limitTo: 10" ng-show="patientCtrl.person">
+			<div ng-repeat="patient in patientCtrl.patients | limitTo: -(patientCtrl.patients.length-{{batch}}+1) | limitTo: {{size}}" ng-show="patientCtrl.person">
 				
 				<h3>{$ patient.qId $}</h3>
 
@@ -72,10 +73,15 @@
 
 		</div> <!-- /container -->
 
+		<footer class="footer">
+	      <div class="container">
+	        <p class="text-muted">CDS Query generation on <a href="https://github.com/ielab/cds_query_generation">GitHub</a></p>
+	      </div>
+	    </footer>
+
 
 
 		<script type="text/javascript" src="/static/restapp/angular.min.js"></script>
-		<script type="text/javascript" src="/static/restapp/ui-bootstrap-tpls-0.13.0.js"></script>
 		<script type="text/javascript" src="/static/restapp/angular-cookies.js"></script>
 		<script type="text/javascript" src="/static/restapp/app.js"></script>
 
