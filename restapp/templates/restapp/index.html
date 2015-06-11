@@ -29,35 +29,45 @@
 
 			<form class="form-inline">
 			  <div class="form-group">
-			    <label for="exampleInputName2">Name</label>
-			    <input type="text" class="form-control" id="exampleInputName2" ng-model="patientCtrl.person" class="form-control" title="Name">
+				<label for="exampleInputName2">Name</label>
+				<input focus="true" type="text" class="form-control" id="exampleInputName2" ng-model="patientCtrl.person" class="form-control" title="Name">
 			  </div>
 			</form>
 
 			<hr>
 
+
+
 			
-			<div ng-repeat="patient in patientCtrl.patients | limitTo:2:20" class="case" ng-show="patientCtrl.person">
-				<h3>{$ patient.qId $}</h3>
-				<blockquote>{$ patient.description $}</blockquote>
-				<p>What is the {$ patient.type $}?</p>
-				<h4>Keywords</h4>
+			<div ng-repeat="patient in patientCtrl.patients | limitTo: -(patientCtrl.patients.length-{{batch}}+1) | limitTo: 10" ng-show="patientCtrl.person">
 				
+				<h3>{$ patient.qId $}</h3>
+
+				<div class="case">
+				
+					<blockquote>{$ patient.description $}</blockquote>
+					<p>What is the {$ patient.queryType $}?</p>
+					
+					<h4>Keywords</h4>
+					
 					<ol>
 						<li ng-repeat="keyword in patient.keywords" ng-if="keyword.person == patientCtrl.person">{$ keyword.person $}: {$ keyword.keywords $}</li>
 					</ol>
-				<form name="reviewForm" ng-submit='patientCtrl.addKeywords(patient, keyword)'>
-					<fieldset class="form-group">
-					<div class="input-group col-md-6">
-						<input ng-model="patientCtrl.currentKeywords" class="form-control" placeholder="Enter your query." title="Keywords" />
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="submit">Save</button>
-						</span>
-					</div><!-- /input-group -->
 
-					</fieldset>
-				</form>
-			</div>   
+
+					<form name="reviewForm" ng-submit='keywordCtrl.addKeywords(patient, patientCtrl.person, patient.keywords.length+1)' ng-controller="KeywordController as keywordCtrl">
+						<fieldset class="form-group">
+							<div class="input-group col-md-6">
+								<input ng-model="keywordCtrl.currentKeywords" class="form-control" placeholder="Enter your query." title="Keywords" />
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="submit">Save</button>
+								</span>
+							</div><!-- /input-group -->
+						</fieldset>
+					</form>
+
+				</div>
+			</div>   <!-- patient repeat -->
 
 
 		</div> <!-- /container -->
@@ -65,6 +75,7 @@
 
 
 		<script type="text/javascript" src="/static/restapp/angular.min.js"></script>
+		<script type="text/javascript" src="/static/restapp/ui-bootstrap-tpls-0.13.0.js"></script>
 		<script type="text/javascript" src="/static/restapp/angular-cookies.js"></script>
 		<script type="text/javascript" src="/static/restapp/app.js"></script>
 

@@ -17,12 +17,12 @@ class Keywords(models.Model):
 	query = models.ForeignKey(Query)
 
 	person = models.CharField(max_length=250)  
-	date_completed = models.DateTimeField()
+	order = models.IntegerField()
 	keywords = models.CharField(max_length=250)
 
 	class Meta:
-		unique_together = ('query', 'person')
+		unique_together = ('query', 'person', 'order')
 		
 
 	def __unicode__(self):
-		return '%s: %s' % (self.person, self.keywords)
+		return '%s, %s: %s' % (self.query, self.person, self.keywords)
