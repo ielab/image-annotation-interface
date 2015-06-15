@@ -45,9 +45,9 @@
 			  </div>
 			</form>
 
-			<hr>
+			
 
-
+			<hr ng-show="patientCtrl.person">
 
 			
 			<div ng-repeat="patient in patientCtrl.patients | limitTo: -(patientCtrl.patients.length-{{batch}}+1) | limitTo: {{size}}" ng-show="patientCtrl.person">
