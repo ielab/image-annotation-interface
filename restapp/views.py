@@ -86,16 +86,16 @@ class KeywordDetail(APIView):
 	# 	except Query.DoesNotExist:
 	# 		raise Http404
 
-	def get(self, request, qId, person, order, format=None):
+	def get(self, request, qId, format=None):
 		query = Query.objects.get(qId=qId)
-		keyword = Keywords.objects.get(query=query, person=person, order=order)
-		keywordSerializer = KeywordSerializer(keyword)
+		keyword = Keywords.objects.filter(query=query)
+		keywordSerializer = KeywordSerializer(keyword, many=True)
 		return Response(keywordSerializer.data)
 
-	def put(self, request, qId, person, order, format=None):
+	def put(self, request, qId, format=None):
 		query = Query.objects.get(qId=qId)
-		keyword = Keywords(query=query, person=person, order=order)
-		keyword.save()
+		keyword = Keywords(query=query, keywords=request.DATA["keywords"], person=request.DATA["person"], order=request.DATA["order"])
+
 		serializer = KeywordSerializer(keyword, data=request.DATA)
 		if serializer.is_valid():
 			serializer.save()

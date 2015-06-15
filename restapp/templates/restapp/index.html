@@ -25,17 +25,25 @@
 			<div class="page-header">
 				<h1>Clinical Decision Support Query Generation</h1>
 			</div>
-			<p class="lead">You are presented with a number of patient case reports, providing details on the patient's health condition and history. Along with each case report, there is a clinical question you want to find information about; questions are either (1) What is the patient's diagnosis?, (2) What tests should the patient receive?, (3) How should the patient be treated?</br>For each patient case report and associated clinical question, please generate one or more queries that you would issue to a search engine, such as PubMed Central or UpToDate, to find evidence from literature that enables you to provide a possible answer to the clinical question.</br></p>
-			<p>To start with the task, enter your name in the corresponding text box below. You should enter your first-name followed by your surname all in lowercase; for example "john white" for John White.</br>You can interrupt the task at any time and also close the website. When you return to this page, enter your name again in the text box below and the queries you have already submitted to the system will be shown under the corresponding case report.</br></p>
+
+			<p class="lead">Help us understand how you would search for evidence based medicine resources.</p>
+
+			<p>
+			<strong>Instructions:</strong> 
+				<ol>
+					<li>You will be presented with a number of patient case reports.</li>
+					<li>For each case reports there is an associated clinical question, e.g., <em>What is the patient's diagnosis?</em></li>
+					<li>We would like you to provide us with one or more queries that <em>you</em> would issue to a search engine in order to help answer the clinical question.</li>
+					<li>You can return to this page at anytime, just enter your name again and all your saved queries will be shown.</li>
+				</ol>
+			</p>
 
 			<form class="form-inline">
 			  <div class="form-group">
-				<label for="exampleInputName2">Enter your first-name and surname (all lowercase)</label>
+				<label for="exampleInputName2">Enter your name:</label>
 				<input focus="true" type="text" class="form-control" id="exampleInputName2" ng-model="patientCtrl.person" class="form-control" title="Name">
 			  </div>
 			</form>
-			
-			<p></br>To enter a query, type your query in the text box below each case report, then press the Save button. You will see your query being automatically added below the case report. You can continue adding queries in this way until you are satisfied and move to the next case report.</p>
 
 			<hr>
 
@@ -49,12 +57,13 @@
 				<div class="case">
 				
 					<blockquote>{$ patient.description $}</blockquote>
-					<p>What is the {$ patient.queryType $}?</p>
+
+					<p>What would you search for to find information on what relevant <strong>{$ patient.queryType $}(s)</strong> are?</p>
 					
-					<h4>Queries</h4>
+				
 					
 					<ol>
-						<li ng-repeat="keyword in patient.keywords" ng-if="keyword.person == patientCtrl.person">{$ keyword.keywords $}</li>
+						<li ng-repeat="keyword in patient.keywords" ng-if="keyword.person.toLowerCase() == patientCtrl.person.toLowerCase()">{$ keyword.keywords $}</li>
 					</ol>
 
 

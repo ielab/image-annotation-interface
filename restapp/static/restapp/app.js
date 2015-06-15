@@ -7,6 +7,9 @@
 	app.config(function($interpolateProvider) {
 		$interpolateProvider.startSymbol('{$');
 		$interpolateProvider.endSymbol('$}');
+
+
+
 	});
 
 	
@@ -32,20 +35,21 @@
         
         this.addKeywords = function(patient, person, order) {
 
-            console.log("order is "+order);
-
             var keywords = {};
             
             keywords["person"] = person;
+            
             keywords["order"] = order;
             keywords["keywords"] = keywordCtrl.currentKeywords;
+
+            console.log(keywords);
 
             patient.keywords.push(keywords);
 
             
 
             $http.defaults.headers.put['X-CSRFToken'] = $cookies.csrftoken;
-            $http.put('/query/'+patient.qId+'/keywords/'+person+'/'+order+'/', keywords).success(function(data) {
+            $http.put('/keywords/'+patient.qId+'/', keywords).success(function(data) {
                 // keywordCtrl.result = data;
                 keywordCtrl.currentKeywords = "";
                 console.log(data);

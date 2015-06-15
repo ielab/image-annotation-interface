@@ -21,4 +21,4 @@ class QuerySerializer(serializers.ModelSerializer):
 class KeywordSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Keywords
-		fields = ('person', 'keywords')
+		fields = ('person', 'keywords', 'order')
