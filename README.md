@@ -1,5 +1,5 @@
-# cds_query_generation
-Annotator toolkit for creating manual queries from clinical decision support scenarios.
+# image-annotation-interface
+Annotator toolkit for describing images.
 
 Uses AnjularJS, Django
 

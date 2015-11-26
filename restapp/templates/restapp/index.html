@@ -7,9 +7,9 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-	 
 
-		<title>Clinical Decision Support Query Generation</title>
+
+		<title>Image Annotator</title>
 
 		<!-- Bootstrap core CSS -->
 		<link href="/static/restapp/bootstrap.min.css" rel="stylesheet">
@@ -23,18 +23,17 @@
 		<div class="container"  ng-controller="PatientController as patientCtrl">
 
 			<div class="page-header">
-				<h1>Clinical Decision Support Query Generation</h1>
+				<h1>Image Annotator</h1>
 			</div>
 
-			<p class="lead">Help us understand how you would search for evidence based medicine resources.</p>
+			<p class="lead">Help us understand describe with as much detail as possible the concepts in an image.</p>
 
 			<p>
-			<strong>Instructions:</strong> 
+			<strong>Instructions:</strong>
 				<ol>
-					<li>You will be presented with a number of patient case reports.</li>
-					<li>For each case reports there is an associated clinical question, e.g., <em>What is the patient's diagnosis?</em></li>
-					<li>We would like you to provide us with one or more queries that <em>you</em> would issue to a search engine in order to help answer the clinical question.</li>
-					<li>You can return to this page at anytime, just enter your name again and all your saved queries will be shown.</li>
+					<li>You will be presented with a number of images.</li>
+					<li>We would like you to provide us with with a detailed description of as many concepts as possible of the image.</li>
+					<li>You can return to this page at anytime, just enter your name again and all your saved descriptions will be shown.</li>
 				</ol>
 			</p>
 
@@ -45,23 +44,23 @@
 			  </div>
 			</form>
 
-			
+
 
 			<hr ng-show="patientCtrl.person">
 
-			
+
 			<div ng-repeat="patient in patientCtrl.patients | limitTo: -(patientCtrl.patients.length-{{batch}}+1) | limitTo: {{size}}" ng-show="patientCtrl.person">
-				
+
 				<h3>{$ patient.qId $}</h3>
 
 				<div class="case">
-				
+
 					<blockquote>{$ patient.description $}</blockquote>
 
 					<p>What would you search for to find information on what relevant <strong>{$ patient.queryType $}(s)</strong> are?</p>
-					
-				
-					
+
+
+
 					<ol>
 						<li ng-repeat="keyword in patient.keywords" ng-if="keyword.person.toLowerCase() == patientCtrl.person.toLowerCase()">{$ keyword.keywords $}</li>
 					</ol>

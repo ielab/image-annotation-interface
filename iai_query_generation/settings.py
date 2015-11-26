@@ -1,5 +1,5 @@
 """
-Django settings for cds_query_generation project.
+Django settings for iai_query_generation project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -50,9 +50,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'cds_query_generation.urls'
+ROOT_URLCONF = 'iai_query_generation.urls'
 
-WSGI_APPLICATION = 'cds_query_generation.wsgi.application'
+WSGI_APPLICATION = 'iai_query_generation.wsgi.application'
 
 
 # Database
