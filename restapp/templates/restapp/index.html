@@ -55,21 +55,18 @@
 
 				<div class="case">
 
-					<blockquote><img src="data:image/jpg;base64,{$ patient.image $}" /></blockquote>
+					<blockquote><img src="data:image/jpg;base64,{$ patient.image $}" width="80%" /></blockquote>
 
-					<p>What would you search for to find information on what relevant <strong>{$ patient.queryType $}(s)</strong> are?</p>
-
-
+					<p>Provide a detailed description of as many things as possible in the above scene.</p>
 
 					<ol>
 						<li ng-repeat="keyword in patient.keywords" ng-if="keyword.person.toLowerCase() == patientCtrl.person.toLowerCase()">{$ keyword.keywords $}</li>
 					</ol>
 
-
 					<form name="reviewForm" ng-submit='keywordCtrl.addKeywords(patient, patientCtrl.person, patient.keywords.length+1)' ng-controller="KeywordController as keywordCtrl">
 						<fieldset class="form-group">
 							<div class="input-group col-md-6">
-								<input ng-model="keywordCtrl.currentKeywords" class="form-control" placeholder="Enter your query." title="Keywords" />
+								<input ng-model="keywordCtrl.currentKeywords" class="form-control" placeholder="Enter description here." title="Keywords" />
 								<span class="input-group-btn">
 									<button class="btn btn-default" type="submit">Save</button>
 								</span>
@@ -86,11 +83,9 @@
 
 		<footer class="footer">
 	      <div class="container">
-	        <p class="text-muted">CDS Query generation on <a href="https://github.com/ielab/cds_query_generation">GitHub</a></p>
+	        <p class="text-muted">Image annotation interface on <a href="https://github.com/ielab/image-annotation-interface">GitHub</a></p>
 	      </div>
 	    </footer>
-
-
 
 		<script type="text/javascript" src="/static/restapp/angular.min.js"></script>
 		<script type="text/javascript" src="/static/restapp/angular-cookies.js"></script>
